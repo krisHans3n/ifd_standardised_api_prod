@@ -1,6 +1,7 @@
 # import flask
 import sys
 import logging
+from src import initialise_image_process as iip
 from flask import Flask, request, jsonify
 import json
 
@@ -13,7 +14,7 @@ logging.basicConfig(level=logging.DEBUG)
 def respond():
     """
     Test curl:
-    curl -v -H "Content-Type: application/json" -X POST -d '{"urls": ["ver", "sdf", "df"]}' http://127.0.0.1:5000/imginterface/
+    curl -v -H "Content-Type: application/json" -X POST -d '{"urls": ["https://www.w3schools.com/howto/img_mountains.jpg", "https://www.oxforduniversityimages.com/images/rotate/Image_Spring_17_4.gif"]}' http://127.0.0.1:5000/imginterface/
     """
     urls = request.get_json()
     urls = urls["urls"]
@@ -23,9 +24,10 @@ def respond():
     if urls is None:
         response["Error"] = "no urls were provided"
     elif urls is not None:
-        cnt = len(urls)
-        report = f"you selected {cnt} {urls} images"
-        response["REPORT"] = report
+        # cnt = len(urls)
+        # report = f"you selected {cnt} {urls} images"
+        report = iip.main_process(urls)
+        response["PAYLOAD"] = report
 
     return jsonify(response)
 
