@@ -8,6 +8,8 @@ For Production:
 - handle authentication [no user log-in | token based]
 - deployment configuration files [for heroku server]
 - implement secret key config for client secure connection
+- ensure URL's are valid and they lead to an image
+
 
 For Development:
 - implement current working modules and test
