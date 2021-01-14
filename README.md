@@ -7,6 +7,7 @@ For Production:
 - handle user change page [api payload not needed]
 - handle authentication [no user log-in | token based]
 - deployment configuration files [for heroku server]
+- implement secret key config for client secure connection
 
 For Development:
 - implement current working modules and test
