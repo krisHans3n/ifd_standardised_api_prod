@@ -12,6 +12,7 @@ For Development:
 - implement current working modules and test
 - implement dictionary to json conversion
 - implement chunking response for each image [currently the client waits for all images to be processed]
+- implement graph database for module processing env and flask authentication / sessions
 - [low priority] implement sending compressed images in json response
 
 
