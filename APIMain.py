@@ -21,7 +21,9 @@ def respond():
     -> chunk each url in to return to browser to split payload
          helps with timeout
     """
+    # TODO: Sanitize/validate json package to ensure predefined structure: https://marshmallow.readthedocs.io/en/stable/examples.html 
     urls = request.get_json()
+    # TODO: validate url strings. Look at: https://www.codespeedy.com/check-if-a-string-is-a-valid-url-or-not-in-python/
     urls = urls["urls"]
 
     response = {}
