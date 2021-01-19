@@ -1,6 +1,7 @@
 # import flask
 import sys
 import logging
+import src._Utils.urlValidator as valid
 from src._Utils.vectorformatter import VectorLoader
 from src import initialise_image_process as iip
 from flask import Flask, request, jsonify
@@ -28,7 +29,7 @@ def respond():
     # TODO: Sanitize/validate json package to ensure predefined structure: https://marshmallow.readthedocs.io/en/stable/examples.html 
     urls = request.get_json()
     # TODO: validate url strings. Look at: https://www.codespeedy.com/check-if-a-string-is-a-valid-url-or-not-in-python/
-    urls = urls["urls"]
+    urls = valid.validate_url_string(urls["urls"])
 
     response = {}
 
