@@ -64,7 +64,7 @@ COLOR_CHANNEL = {
     "L": "grey scale"
 }
 
-IMG_PRC_RES_ALL = {}  # Will contain the results of all analysis
+# IMG_PRC_RES_ALL = {}  # Will contain the results of all analysis
 
 IMG_PATHS = []
 
@@ -93,6 +93,7 @@ def clean_directory():
 def process_url(URLs):
     # clean up target directory
     clean_directory()
+    IMG_PRC_RES_ALL = {}
     TEST_IMG_URLS = URLs
 
     # iterate through list of urls
@@ -118,7 +119,7 @@ def process_url(URLs):
             print('Image Could not be retrieved ...')
 
 
-def build_image_objects():
+def build_image_objects(result_dict):
     """
     iterate through images
     strip image and metadata
@@ -137,14 +138,10 @@ def build_image_objects():
         # add image object to the object list for later iteration
         IMG_OBJS.append(image_obj)
         IMG_PATHS.append(image_obj.file_path)
-        IMG_PRC_RES_ALL[file] = []
+        result_dict[file] = []
 
-        # using util_dissect_image:
-        # pass image into class constructor
-        # return image object
-        # do same for metadata
-
-    show_obj_prop_debug()
+    return result_dict
+    # show_obj_prop_debug()
 
 
 def flatten_md_2d(L):
@@ -176,21 +173,24 @@ def compress_common_lst(arr):
 
 
 def compile_results(dict2):
-    for key, value in IMG_PRC_RES_ALL.items():
+    for key, value in dict2.items():
         if key in dict2:
-            IMG_PRC_RES_ALL[key] = compress_common_lst(dict2[key])
+            dict2[key] = compress_common_lst(dict2[key])
+    return dict2
 
 
-def coordinate_main():
-    compile_results(analyse_img_integrity(IMG_PATHS, IMG_PRC_RES_ALL))
+def coordinate_main(return_d):
+    compile_results(analyse_img_integrity(IMG_PATHS, return_d))
 
     # Note: if faces are detected this flags the GAN generated img det procedure
 
     # after procs sort multidimensional arrays to 2d
     print("Converting to 2d array")
-    print("Current dict -> ", IMG_PRC_RES_ALL)
-    for k, v in IMG_PRC_RES_ALL.items():
-        IMG_PRC_RES_ALL[k] = flatten_md_2d(v)
+    print("Current dict -> ", return_d)
+    for k, v in return_d.items():
+        return_d[k] = flatten_md_2d(v)
+
+    return return_d
 
 
 def show_obj_prop_debug():
@@ -207,14 +207,18 @@ def find_build_for_category(img_type):
     """
 
 
-def main_process(urls):
-    print("processing...")
-    # TEST_IMG_URLS = urls
-    process_url(urls)
-    build_image_objects()
-    coordinate_main()
+class MainInterface:
+    def __init__(self):
+        pass
 
-    return IMG_PRC_RES_ALL
+    def main_process(self, urls):
+        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+        IMG_PRC_RES_ALL = {}
+        process_url(urls)
+        IPR = build_image_objects(IMG_PRC_RES_ALL)
+        IPR_n = coordinate_main(IPR)
+
+        return IPR_n
 
 # if __name__ == "__main__":
 #     print("program execute")
