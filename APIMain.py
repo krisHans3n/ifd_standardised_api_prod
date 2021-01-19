@@ -36,6 +36,9 @@ def respond():
     elif urls is not None:
         report = iip.main_process(urls)
         response["PAYLOAD"] = report
+        # TODO: Add photo encoding class into base64
+        #       note: this module will be extended for other file types in the future
+        #       append to json for each image [ will be consumed by extension ]
 
     return jsonify(response)
 
