@@ -23,9 +23,8 @@ limiter = Limiter(
 
 
 @app.route('/imginterface/', methods=['POST', 'GET'])
-#@limiter.limit("40 per minute")
+@limiter.limit("40 per minute")
 def respond():
-    report = {}
     """
     Test curl:
     curl -v -H "Content-Type: application/json" -X POST -d '{"urls": ["https://www.w3schools.com/howto/img_mountains.jpg", "https://www.oxforduniversityimages.com/images/rotate/Image_Spring_17_4.gif"]}' http://127.0.0.1:5000/imginterface/

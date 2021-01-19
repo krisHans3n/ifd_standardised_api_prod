@@ -215,10 +215,10 @@ class MainInterface:
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
         IMG_PRC_RES_ALL = {}
         process_url(urls)
-        IPR = build_image_objects(IMG_PRC_RES_ALL)
-        IPR_n = coordinate_main(IPR)
+        IMG_PRC_RES_ALL = build_image_objects(IMG_PRC_RES_ALL)
+        IMG_PRC_RES_ALL = coordinate_main(IMG_PRC_RES_ALL)
 
-        return IPR_n
+        return IMG_PRC_RES_ALL
 
 # if __name__ == "__main__":
 #     print("program execute")
