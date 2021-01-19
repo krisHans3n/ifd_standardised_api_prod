@@ -1,6 +1,7 @@
 # import flask
 import sys
 import logging
+from src._Utils.vectorformatter import VectorLoader
 from src import initialise_image_process as iip
 from flask import Flask, request, jsonify
 
@@ -34,12 +35,10 @@ def respond():
     if urls is None or len(urls) == 0:
         response["Error"] = "no urls were provided"
     elif urls is not None:
+        vl = VectorLoader()
         report = iip.main_process(urls)
+        report = vl.appendB64toJSON(report)
         response["PAYLOAD"] = report
-        # TODO: Add photo encoding class into base64
-        #       note: this module will be extended for other file types in the future
-        #       append to json for each image [ will be consumed by extension ]
-
     return jsonify(response)
 
 
