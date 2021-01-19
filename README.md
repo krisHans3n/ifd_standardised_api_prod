@@ -11,6 +11,7 @@ Interface with chrome for image forgery detection
 | GAN Detection | used to detect face manipulation, deep fakes or ai rendered faces | TBS |
 | API Security | Token authentication. Browser based with no login | TBS |
 | Chrome Plugin | Javascript front end to scrape images and send urls to API for report and visual detection | In progress |
+| Benford Law Analysis (experimental) | Applies the statistical rules of Benfords Law to image vector analysis | In redearch |
 
 TODO:
 **For Production:**
