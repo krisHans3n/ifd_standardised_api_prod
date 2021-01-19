@@ -10,7 +10,7 @@ Interface with chrome for image forgery detection
 | Face Recognition | Flagging images that contain face(s) of persons | In research |
 | GAN Detection | used to detect face manipulation, deep fakes or ai rendered faces | TBS |
 | API Security | Token authentication. Browser based with no login | TBS |
-| Chrome Plugin | Javascript front end to scrape images and send urls to API for report and visual detection | TBS |
+| Chrome Plugin | Javascript front end to scrape images and send urls to API for report and visual detection | In progress |
 
 TODO:
 **For Production:**
