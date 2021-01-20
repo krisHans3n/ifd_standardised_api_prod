@@ -79,15 +79,18 @@ THIS_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 # os.chdir("..")
 # os.chdir("test_images_dom_origin")
 # IMG_DIR = os.path.dirname(os.path.abspath(__file__))
-IMG_DIR = THIS_DIRECTORY.split('/')
-del IMG_DIR[-1:]
-IMG_DIR = '/'.join(IMG_DIR) + '/test_images_dom_origin/'
+IMG_DIR_BACK_ONE = THIS_DIRECTORY.split('/')
+del IMG_DIR_BACK_ONE[-1:]
+IMG_DIR = '/'.join(IMG_DIR_BACK_ONE) + '/test_images_dom_origin/'
+FORGERIES = '/'.join(IMG_DIR_BACK_ONE) + '/image_forgeries/'
 
 
 def clean_directory():
-    for file in os.listdir(IMG_DIR):
-        print("Removing file: ", file)
-        os.remove(IMG_DIR + file)
+    dirs = [IMG_DIR, FORGERIES]
+    for d in dirs:
+        for file in os.listdir(d):
+            print("Removing file: ", file)
+            os.remove(d + file)
 
 
 def process_url(URLs):
