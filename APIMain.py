@@ -8,6 +8,7 @@ from src.initialise_image_process import MainInterface
 from flask import Flask, request, jsonify, session
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from functools import wraps
 
 # session.clear()
 
@@ -22,7 +23,40 @@ limiter = Limiter(
 )
 
 
+def required_params(required):
+    def decorator(fn):
+
+        @wraps(fn)
+        def wrapper(*args, **kwargs):
+            _json = request.get_json()
+            missing = [r for r in required.keys()
+                       if r not in _json]
+            print(missing, _json)
+            if missing:
+                response = {
+                    "status": "error",
+                    "message": "Request JSON is missing some required params",
+                    "missing": missing
+                }
+                return jsonify(response), 400
+            wrong_types = [r for r in required.keys()
+                           if not isinstance(_json[r], required[r])]
+            if wrong_types:
+                response = {
+                    "status": "error",
+                    "message": "Data types in the request JSON do not match the required format",
+                    "param_types": {k: str(v) for k, v in required.items()}
+                }
+                return jsonify(response), 400
+            return fn(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
 @app.route('/imginterface/', methods=['POST', 'GET'])
+@required_params({"urls": list})
 @limiter.limit("40 per minute")
 def respond():
     """
@@ -32,10 +66,8 @@ def respond():
     -> add configs
     -> chunk each url in to return to browser to split payload
          helps with timeout
+    -> from functools import wraps
     """
-    # TODO: Implement graph based authentication system (if Oauth)
-    # TODO: Implement rate limiting
-    # TODO: Sanitize/validate json package to ensure predefined structure: https://marshmallow.readthedocs.io/en/stable/examples.html 
     urls = request.get_json()
     urls = valid.validate_url_string(urls["urls"])
 
@@ -45,7 +77,6 @@ def respond():
         response["Error"] = "no urls were provided"
     elif urls is not None:
         mi = MainInterface()
-        print(id(mi))
         vl = VectorLoader()
         report = mi.main_process(urls)
         report_ = vl.appendB64toJSON(report)
