@@ -1,18 +1,5 @@
 """
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-3 grades to image detection
-1: Amateur photo editors and basic copy paste manipulation of images
----------- These actors are non-professional or have limited access to high grade editing software
-2: Intermediary type manipulation of an image with possible fraudulent attempt
----------- These actors are semi-professional but not serious in their intentions
-3: High level of image manipulation involved with great attempts made to cover any tampering to image
----------- This level requires more cross-analysis and possible ML depending on what
----------- can be determined about the image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The functions of this program range from basic image manipulaiton detection to more refined techniques
 This program is by no means an exhaustive list of techniques but provide a reasonable tool kit
 
@@ -44,6 +31,7 @@ min_samples = 2
 def analyse_img_integrity(file_paths, IMG_Results):
     # Main loop for all stored image paths in question
     for fp in file_paths:
+        print(">>>>>>>>>>>> Analysing images from URL list")
         image = cv2.imread(fp)
         f_name = os.path.basename(fp)
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -55,7 +43,7 @@ def analyse_img_integrity(file_paths, IMG_Results):
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         Copy-move forgery detection 
         """
-        print("dbscan started", current_dir)
+        print(">>>>>>>>>>>>>>> Copy move forgery detection started")
         detect = DetectCopyMove(image)
         forgery = detect.locate_forgery(eps, min_samples)
 
@@ -72,6 +60,7 @@ def analyse_img_integrity(file_paths, IMG_Results):
                 Image splicing detection
                 IMG_Results[f_name].append(["IMG_SPLICING", 0])
         """
+        IMG_Results[f_name].append(["IMG_SPLICING", 0])
 
         """
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,6 +78,12 @@ def analyse_img_integrity(file_paths, IMG_Results):
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 Detect faces in Image
                 IMG_Results[f_name].append(["FACE_DETECTION", 0])
+        """
+
+        """
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                Detect faces in Image
+                if FACE_DETECTION = 1 ->IMG_Results[f_name].append(["GAN_MANIPULATED_IMAGE", 0])
         """
 
     return IMG_Results

@@ -1,31 +1,10 @@
-# process url and take the image object
-# -> returns -> image(), metadata()[sent to image], index file of basic image info
-### in future the process function will take all images from a webpage DOM when loading
-
-# images are counted and a loop is set to this length
-
-# while true [i.e. no. img = no. threads + extra processes threads]
-# -> begin process of image analysis
-# -----> this is a series of abstracted classes performing on the same object
-# -----> the superclass is imageanalysis()
-# -> each image is processed on a separate thread
-# -----> at each level when a positive is made it writes to the corresponding image file
-# -----> once all levels are complete the image file personal report is complete
-# -----> thread stops
-####### same process for threaded processes but through different levels
-
-# when all threads are complete the report and text directory should be full of info
-# this will be the basis for generating information
-# the last stage will be displaying it as a chrome extension and running in the
-# background when enabled and a url is freshly visited
-
-'''
+"""
 Date: 14/12/2020
 Author: Kristoffer Hansen
 Module -> takes URLs as input produces report in shared access area of program
           threading enabled
           subprocesses to be thrown in
-'''
+"""
 import io
 import PIL
 from src._Utils.util_dissect_image import *
@@ -76,9 +55,6 @@ IMAGE_PATHS = []
 
 # Set usable directories
 THIS_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
-# os.chdir("..")
-# os.chdir("test_images_dom_origin")
-# IMG_DIR = os.path.dirname(os.path.abspath(__file__))
 IMG_DIR_BACK_ONE = THIS_DIRECTORY.split('/')
 del IMG_DIR_BACK_ONE[-1:]
 IMG_DIR = '/'.join(IMG_DIR_BACK_ONE) + '/test_images_dom_origin/'
@@ -127,7 +103,8 @@ def build_image_objects(result_dict):
     iterate through images
     strip image and metadata
     construct objects from images data
-    :return:
+    Note: Redundant. Use PIL, cv2 or other library for image object creation
+    return:
     """
 
     for file in os.listdir(IMG_DIR):
@@ -155,7 +132,6 @@ def flatten_md_2d(L):
         ar = L.pop(0)
         if count > 200:
             break
-        print(type(ar[0]))
         if type(ar[0]) == list:
             L.append(ar.pop(0))
             if len(ar) >= 1:
@@ -185,10 +161,9 @@ def compile_results(dict2):
 def coordinate_main(return_d):
     compile_results(analyse_img_integrity(IMG_PATHS, return_d))
 
-    # Note: if faces are detected this flags the GAN generated img det procedure
-
     # after procs sort multidimensional arrays to 2d
     print("Converting to 2d array")
+    print("NOTE: Delete 2D formatting as it is redundant")
     print("Current dict -> ", return_d)
     for k, v in return_d.items():
         return_d[k] = flatten_md_2d(v)
