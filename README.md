@@ -12,6 +12,7 @@ Interface with chrome for image forgery detection
 | API Security | If no login then rate limits on api resource (threading) or Oath with email/gmail and more | TBS |
 | Chrome Plugin | Javascript front end to scrape images and send urls to API for report and visual detection | In testing |
 | Benford Law Analysis (experimental) | Applies the statistical rules of Benfords Law to image vector analysis | In research |
+| Sys admin API interface | API endpoints for database reading and  configuration settings | TBS |
 
 TODO:
 **For Production:**
