@@ -79,8 +79,8 @@ def respond():
         mi = MainInterface()
         vl = VectorLoader()
         report = mi.main_process(urls)
-        report_ = vl.appendB64toJSON(report)
-        response["PAYLOAD"] = report_
+        _report = vl.appendB64toJSON(report)
+        response["PAYLOAD"] = _report
     return jsonify(response)
 
 
