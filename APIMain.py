@@ -49,10 +49,16 @@ def create_app():
 
     app = Flask(__name__)
     
+#     # Future initialisation
+#     app.config.from_object('config')
+#     api.init_app(app)
+#     # initialize SQLAlchemy
+#     db.init_app(app)
+    
     limiter = Limiter(
     app,
     key_func=get_remote_address,
-    default_limits=["200 per day", "50 per hour"]
+    default_limits=["720 per day", "30 per hour"]
     )
     
     
