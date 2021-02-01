@@ -4,17 +4,17 @@ Interface with chrome for image forgery detection
 **Feature list**
 | Feature | Description | Status |
 | --- | ----------- | ----------- |
-| API Endpoint | Integration of main image analysis module implemented | In progress |
+| API Endpoint | Integration of main image analysis module implemented | In Development |
 | Copy-move Detection | Using SIFT and DBSCAN for passive image forgery detection | In Testing |
 | Splice Detection  | Utilises ML methodologies | In research |
 | Face Recognition | Flagging images that contain face(s) of persons | In research |
 | GAN Detection | used to detect face manipulation, deep fakes or ai rendered faces | TBS |
-| API Security | If no login then rate limits on api resource (threading) or Oath with email/gmail and more | TBS |
+| API Security | If no login then rate limits on api resource (threading) or Oath with email/gmail and more | In Testing |
 | Chrome Plugin | Javascript front end to scrape images and send urls to API for report and visual detection | In testing |
 | Benford Law Analysis (experimental) | Applies the statistical rules of Benfords Law to image vector analysis | In research |
 | Sys admin API interface | API endpoints for database reading and  configuration settings | TBS |
-| GUnicorn | Implement GUnicorn for production  concurrency | TBS |
-| NGinx | Works in tandem with GUnicorn. Serves requests to GUnicorn and static to itself | TBS |
+| GUnicorn | Implement GUnicorn for production  concurrency | In Research |
+| NGinx | Works in tandem with GUnicorn. Serves requests to GUnicorn and static to itself | In Research |
 
 TODO:
 **For Production:**
