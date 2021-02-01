@@ -97,6 +97,10 @@ def process_url(URLs):
         else:
             print('Image Could not be retrieved ...')
 
+    #for dURL in failed_urls:
+    #    if dURL in TEST_IMG_URLS:
+    #        TEST_IMG_URLS.remove(dURL)
+
 
 def build_image_objects(result_dict):
     """
