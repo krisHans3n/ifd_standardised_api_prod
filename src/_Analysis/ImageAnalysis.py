@@ -60,8 +60,13 @@ def analyse_img_integrity(file_paths, IMG_Results):
                 Image splicing detection
                 IMG_Results[f_name].append(["IMG_SPLICING", 0])
         """
-        IMG_Results[f_name].append(["IMG_SPLICING", 0])
-
+        
+        """
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                Image Location  [default value ""]
+                IMG_Results[f_name].append(["IMG_Location", "Location Info"])
+        """
+        
         """
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 Image retouching detection
