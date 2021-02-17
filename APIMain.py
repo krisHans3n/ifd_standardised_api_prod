@@ -66,7 +66,7 @@ def create_app():
     # TODO: Block rate limits
     @app.route('/imginterface/', methods=['POST', 'GET'])
     @required_params({"urls": list})
-    @limiter.limit("40 per minute")
+    # @limiter.limit("40 per minute")
     def respond():
         """
         Test curl:
