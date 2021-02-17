@@ -13,12 +13,13 @@ from functools import wraps
 logging.basicConfig(level=logging.DEBUG)
 
 def required_params(required):
-
+    
     def decorator(fn):
-
+        
         @wraps(fn)
         def wrapper(*args, **kwargs):
             _json = request.get_json()
+            print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%',request.get_json())
             missing = [r for r in required.keys()
                        if r not in _json]
             print(missing, _json)
@@ -95,4 +96,4 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(threaded=True, port=5000, debug=True)
+    app.run(threaded=True, port=5001, debug=True)
