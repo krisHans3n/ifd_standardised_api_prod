@@ -61,7 +61,8 @@ def create_app():
     default_limits=["720 per day", "30 per hour"]
     )
     
-    
+    # TODO: Restrict incoming client to only the port:5000 -> ml_img_det_intrfc
+    # TODO: Block rate limits
     @app.route('/imginterface/', methods=['POST', 'GET'])
     @required_params({"urls": list})
     @limiter.limit("40 per minute")
