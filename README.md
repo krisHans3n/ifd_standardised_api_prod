@@ -16,6 +16,19 @@ Interface with chrome for image forgery detection
 | GUnicorn | Implement GUnicorn for production  concurrency | In Research |
 | NGinx | Works in tandem with GUnicorn. Serves requests to GUnicorn and static to itself | In Research |
 
+Proposed Features:
+- main api at port 5001 (see other repo)
+- delegation of work to other apis (passive image forensics, gan generated faces)
+- when responses returned final json compiled along with compressed image mask and metadata
+
+The above proposed features provide plenty of information for the user to consider. 
+An analytical step is needed to perhapscross reference results and return a level of confidience in the 
+analytical evidence.
+
+TODO: After all components in place and testing is in final stages a metrics module is needed to show statistics in some form.
+      This is needed since a range of techniques are used such as CNN, passive image analysis, various clustering.
+      If possible, try and measure each of these and provide an overall confidence score.
+
 TODO:
 **For Production:**
 - handle long response gaps 
@@ -23,7 +36,6 @@ TODO:
 - handle authentication [no user log-in | token based]
 - deployment configuration files [for heroku server]
 - implement secret key config for client secure connection
-- ensure URL's are valid and they lead to an image
 
 
 **For Development:**
