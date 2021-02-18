@@ -90,6 +90,7 @@ def create_app():
             report = mi.main_process(urls)
             _report = vl.appendB64toJSON(report)
             response["PAYLOAD"] = _report
+        print(response)
         return jsonify(response)
     
     return app
