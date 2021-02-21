@@ -24,7 +24,7 @@ class VectorLoader:
 
     def appendB64toJSON(self, dict_):
         for k in list(dict_):
-            dict_["img_result"] = self.image_base64(os.path.splitext(k)[0])
+            dict_[k].append(["img_result", self.image_base64(os.path.splitext(k)[0])])
         return dict_
 
 
