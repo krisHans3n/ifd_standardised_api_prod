@@ -122,7 +122,7 @@ def build_image_objects(result_dict):
         # add image object to the object list for later iteration
         IMG_OBJS.append(image_obj)
         IMG_PATHS.append(image_obj.file_path)
-        result_dict[file] = []
+        result_dict[os.path.splitext(file)[0]] = []  #  file name to be replace with shared guid
 
     return result_dict
     # show_obj_prop_debug()

@@ -48,12 +48,12 @@ def analyse_img_integrity(file_paths, IMG_Results):
         forgery = detect.locate_forgery(eps, min_samples)
 
         if forgery is not None:
-            IMG_Results[f_name].append(["DBSCAN_CPY_MOVE", 1])
+            IMG_Results[os.path.splitext(f_name)[0]].append(["DBSCAN_CPY_MOVE", 1])
             # store forgery for use in client for image overlay
             cv2.imwrite(forge_img_dir, forgery)
             cv2.waitKey(0)
         else:
-            IMG_Results[f_name].append(["DBSCAN_CPY_MOVE", 0])
+            IMG_Results[os.path.splitext(f_name)[0]].append(["DBSCAN_CPY_MOVE", 0])
 
         """
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

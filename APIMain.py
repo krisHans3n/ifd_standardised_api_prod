@@ -89,9 +89,9 @@ def create_app():
             vl = VectorLoader()
             report = mi.main_process(urls)
             _report = vl.appendB64toJSON(report)
-            response["PAYLOAD"] = _report
-        print(response)
-        return jsonify(response)
+            #  response["PAYLOAD"] = _report
+        #  print(response)
+        return jsonify(_report)
     
     return app
 
