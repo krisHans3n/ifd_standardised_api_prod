@@ -32,12 +32,16 @@ def analyse_img_integrity(file_paths, IMG_Results):
     # Main loop for all stored image paths in question
     for fp in file_paths:
         print(">>>>>>>>>>>> Analysing images from URL list")
+        print(IMG_Results)
         image = cv2.imread(fp)
         f_name = os.path.basename(fp)
         current_dir = os.path.dirname(os.path.abspath(__file__))
         tmp_lst = current_dir.split('/')
         del tmp_lst[-2:]
         forge_img_dir = '/'.join(tmp_lst) + '/image_forgeries/' + f_name
+        
+        if os.path.splitext(f_name)[0] not in IMG_Results.keys():
+            continue
 
         """
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
