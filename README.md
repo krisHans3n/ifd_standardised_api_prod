@@ -15,6 +15,7 @@ Interface with chrome for image forgery detection
 | Sys admin API interface | API endpoints for database reading and  configuration settings | TBS |
 | GUnicorn | Implement GUnicorn for production  concurrency | In Research |
 | NGinx | Works in tandem with GUnicorn. Serves requests to GUnicorn and static to itself | In Research |
+| Web Page | Create front end web page to allow user to upload or paste link and get report in response (makes call to microservices API) | TBS |
 
 Proposed Features:
 - main api at port 5001 (see other repo)
