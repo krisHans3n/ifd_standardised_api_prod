@@ -163,6 +163,8 @@ def compile_results(dict2):
 
 
 def coordinate_main(return_d):
+    # iterate through urls and append to dictionary instead
+    # track successful images and only append them
     compile_results(analyse_img_integrity(IMG_PATHS, return_d))
 
     # after procs sort multidimensional arrays to 2d
@@ -196,8 +198,11 @@ class MainInterface:
     def main_process(self, urls):
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
         IMG_PRC_RES_ALL = {}
-        process_url(urls)
-        IMG_PRC_RES_ALL = build_image_objects(IMG_PRC_RES_ALL)
+        # Skip processing urls. Feed straight into analysis and output in-memory image compression
+        #             [do an img.show in test]
+        # process_url(urls)
+        # skip making objects
+        # IMG_PRC_RES_ALL = build_image_objects(IMG_PRC_RES_ALL)
         IMG_PRC_RES_ALL = coordinate_main(IMG_PRC_RES_ALL)
 
         return IMG_PRC_RES_ALL
