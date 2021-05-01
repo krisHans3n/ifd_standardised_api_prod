@@ -12,6 +12,9 @@ from functools import wraps
 
 logging.basicConfig(level=logging.DEBUG)
 
+# TODO: Seperate this into validation, conduit.app, conduit.routes
+# TODO: Add conduit.settings
+
 def required_params(required):
     
     def decorator(fn):
