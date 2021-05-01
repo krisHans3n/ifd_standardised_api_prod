@@ -14,6 +14,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 # TODO: Seperate this into validation, conduit.app, conduit.routes
 # TODO: Add conduit.settings
+# TODO: Check IP is only from known api (i.e. api_gateway)
 
 def required_params(required):
     
