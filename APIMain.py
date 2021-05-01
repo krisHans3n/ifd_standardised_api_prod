@@ -92,7 +92,7 @@ def create_app():
             mi = MainInterface()
             vl = VectorLoader()
             report = mi.main_process(urls)
-            _report = vl.appendB64toJSON(report)
+            _report = vl.appendB64toJSON(report) # This should be moved inside of analysis function when binding to output dictionary
             #  response["PAYLOAD"] = _report
         #  print(response)
         return jsonify(_report)
