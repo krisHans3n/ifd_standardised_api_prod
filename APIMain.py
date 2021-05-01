@@ -86,7 +86,7 @@ def create_app():
 
         response = {}
 
-        if urls is None or len(urls) == 0:
+        if urls is None or len(urls) == 0: # This isn't really necessary. validate with type or just with validation decorator
             response["Error"] = "no urls were provided"
         elif urls is not None:
             mi = MainInterface()
